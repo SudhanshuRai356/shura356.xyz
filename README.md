@@ -64,7 +64,7 @@ A portfolio, sure — but also a playground. I built this site to showcase my re
    ```bash
    npm run dev
    ```
-4. Open [http://localhost:3000](http://localhost:3000)
+4. Open [http://localhost:3000](http://localhost:3000) or if for some reason port 3000 is busy the port the site is being hosted on will be shown in the terminal when npm is run
 
 ## Colors & Vibes
 - **Fire Red:** #EF4444
