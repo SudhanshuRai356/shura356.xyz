@@ -2,13 +2,15 @@
   "name": "sudhanshu-rai-portfolio",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://SudhanshuRai356.github.io/shura356.xyz",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:export": "next build && next export",
-    "start": "next start",
-    "lint": "next lint",
-    "export": "next build && next export"
+    "export": "next export",
+    "build:export": "npm run build && npm run export",
+    "predeploy": "npm run build && npm run export",
+    "deploy": "echo \"shura356.xyz\" > out/CNAME && echo \"\" > out/.nojekyll && gh-pages -d out -t true",
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "14.0.4",
@@ -26,6 +28,7 @@
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "gh-pages": "^5.0.0"
   }
 }
