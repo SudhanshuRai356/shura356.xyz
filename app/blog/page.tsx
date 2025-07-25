@@ -3,24 +3,9 @@
 import { motion } from 'framer-motion'
 import { ArrowLeft, Calendar, Clock, Flame } from 'lucide-react'
 import Link from 'next/link'
+import { blogPosts } from '@/blogData'
 
 const BlogPage = () => {
-  const blogPosts: Array<{
-    slug: string
-    title: string
-    date: string
-    readTime: string
-    excerpt: string
-  }> = [
-    {
-      slug: 'building-this-portfolio',
-      title: 'So finally from getting the domain to creating the site',
-      date: 'July 25, 2025',
-      readTime: '3 min read',
-      excerpt: 'Creating this website was a fresh opportunity to learn how modern static websites are built, especially with the help of AI. A reflection on the journey of building this portfolio and what I learned along the way.'
-    }
-  ]
-
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Retro scan lines effect */}
