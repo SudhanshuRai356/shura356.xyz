@@ -8,3 +8,5 @@ const nextConfig = {
     unoptimized: true,
   },
 };
+
+module.exports = nextConfig;
