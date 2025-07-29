@@ -17,20 +17,23 @@ const HeroSection = () => {
   ]
 
   useEffect(() => {
-    // Burn progress animation
+    // Smooth burn progress animation
     const progressTimer = setInterval(() => {
-      setBurnProgress(prev => (prev + 2) % 101)
-    }, 150)
+      setBurnProgress(prev => {
+        const newProgress = (prev + 1) % 101
+        return newProgress
+      })
+    }, 200)
 
-    // Glitch text effect
+    // Smoother glitch text effect
     const glitchTimer = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * glitchVariations.length)
       setGlitchText(glitchVariations[randomIndex])
       
       setTimeout(() => {
         setGlitchText('CYBERSECURITY STUDENT')
-      }, 200)
-    }, 3000)
+      }, 300)
+    }, 4000)
 
     return () => {
       clearInterval(progressTimer)
@@ -51,25 +54,48 @@ const HeroSection = () => {
         }}></div>
       </div>
 
-      {/* Floating fire particles */}
+      {/* Smooth floating embers */}
       <div className="absolute inset-0">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-orange-500 rounded-full"
+            className="absolute w-1.5 h-1.5 bg-gradient-to-t from-red-500 to-orange-400 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${20 + i * 12}%`,
+              top: `${70 + (i % 3) * 8}%`,
             }}
             animate={{
-              y: [-20, -100],
-              opacity: [0, 1, 0],
-              scale: [0.5, 1.5, 0],
+              y: [-10, -80, -10],
+              opacity: [0.3, 0.8, 0.3],
+              scale: [0.5, 1.2, 0.5],
             }}
             transition={{
-              duration: 3,
+              duration: 6 + i * 0.8,
               repeat: Infinity,
-              delay: i * 0.5,
+              ease: "easeInOut",
+              delay: i * 1.2,
+            }}
+          />
+        ))}
+        
+        {/* Subtle ambient glow orbs */}
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={`glow-${i}`}
+            className="absolute w-8 h-8 bg-gradient-radial from-orange-400/15 to-transparent rounded-full blur-md"
+            style={{
+              left: `${25 + i * 30}%`,
+              top: `${45 + i * 10}%`,
+            }}
+            animate={{
+              scale: [1, 1.8, 1],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 8 + i * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 3,
             }}
           />
         ))}
@@ -87,9 +113,15 @@ const HeroSection = () => {
             <h1 className="text-6xl md:text-8xl font-black text-white mb-4 font-mono tracking-wider">
               SUDHANSHU RAI
             </h1>
-            <div className="absolute inset-0 text-6xl md:text-8xl font-black text-red-500 font-mono tracking-wider animate-pulse opacity-60 blur-sm">
+            <motion.div 
+              className="absolute inset-0 text-6xl md:text-8xl font-black text-red-500 font-mono tracking-wider opacity-60 blur-sm"
+              animate={{ 
+                opacity: [0.4, 0.7, 0.4]
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
               SUDHANSHU RAI
-            </div>
+            </motion.div>
             <div className="text-2xl md:text-3xl font-bold text-orange-400 font-mono tracking-wider mt-2">
               [ AKA: SHURA356 ]
             </div>
@@ -99,12 +131,12 @@ const HeroSection = () => {
             className="text-3xl md:text-5xl font-bold text-orange-400 font-mono tracking-wide"
             animate={{ 
               textShadow: [
-                "0 0 10px #ff6600, 0 0 20px #ff0000, 0 0 30px #ff0000",
-                "0 0 20px #ff0000, 0 0 30px #ff6600, 0 0 40px #ff6600",
-                "0 0 10px #ff6600, 0 0 20px #ff0000, 0 0 30px #ff0000"
+                "0 0 8px #ff6600, 0 0 16px #ff4400, 0 0 24px #ff2200",
+                "0 0 12px #ff4400, 0 0 20px #ff6600, 0 0 28px #ff6600",
+                "0 0 8px #ff6600, 0 0 16px #ff4400, 0 0 24px #ff2200"
               ]
             }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             {glitchText}
           </motion.div>
@@ -119,7 +151,19 @@ const HeroSection = () => {
         >
           <p className="text-2xl md:text-3xl font-bold text-white leading-relaxed font-mono mb-6">
             <span className="text-orange-400">2nd Year</span> B.Tech CSE Student specializing in{' '}
-            <span className="text-red-400 font-black animate-pulse">CYBERSECURITY</span>
+            <motion.span 
+              className="text-red-400 font-black"
+              animate={{ 
+                textShadow: [
+                  "0 0 10px rgba(255,100,100,0.8)",
+                  "0 0 20px rgba(255,150,150,0.9)",
+                  "0 0 10px rgba(255,100,100,0.8)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              CYBERSECURITY
+            </motion.span>
           </p>
           
           <p className="text-lg text-gray-300 font-mono">
@@ -148,10 +192,11 @@ const HeroSection = () => {
         >
           <motion.button
             whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 0 30px rgba(255, 0, 0, 0.8)"
+              scale: 1.03,
+              boxShadow: "0 0 25px rgba(255, 100, 0, 0.6)"
             }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-8 py-4 font-bold text-lg font-mono uppercase tracking-wider border-2 border-red-400 relative overflow-hidden group"
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
           >
@@ -159,15 +204,16 @@ const HeroSection = () => {
               <Flame className="w-6 h-6" />
               IGNITE PROJECTS
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
           </motion.button>
           
           <motion.button
             whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 0 30px rgba(255, 165, 0, 0.8)"
+              scale: 1.03,
+              boxShadow: "0 0 25px rgba(255, 165, 0, 0.6)"
             }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="bg-gradient-to-r from-orange-600 to-yellow-500 text-black px-8 py-4 font-bold text-lg font-mono uppercase tracking-wider border-2 border-orange-400 relative overflow-hidden group"
             onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
@@ -175,7 +221,7 @@ const HeroSection = () => {
               <Target className="w-6 h-6" />
               VIEW DESTRUCTION
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
           </motion.button>
         </motion.div>
 
@@ -190,21 +236,43 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 1.6 }}
-            className="bg-black border-2 border-gray-700 p-8 text-center relative overflow-hidden group hover:border-red-500 transition-colors duration-300"
+            className="bg-black border-2 border-gray-700 p-8 text-center relative overflow-hidden group hover:border-red-500 transition-all duration-500 ease-out"
             style={{
               boxShadow: '0 0 15px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 0, 0, 0.1)'
             }}
           >
-            <Flame className="w-12 h-12 mx-auto mb-4 text-red-500 group-hover:animate-pulse" />
-            <div className="text-4xl font-bold font-mono mb-3 text-red-500">
+            <motion.div
+              animate={{ 
+                rotate: [0, 5, -5, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            >
+              <Flame className="w-12 h-12 mx-auto mb-4 text-red-500" />
+            </motion.div>
+            <motion.div 
+              className="text-4xl font-bold font-mono mb-3 text-red-500"
+              animate={{ 
+                textShadow: [
+                  "0 0 10px #ff0000",
+                  "0 0 20px #ff4400",
+                  "0 0 10px #ff0000"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
               ∞
-            </div>
+            </motion.div>
             <div className="text-sm font-mono font-bold text-gray-400 uppercase tracking-wider">
               FIRES STARTED
             </div>
             
-            {/* Retro glow effect on hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            {/* Smoother glow effect on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out"></div>
           </motion.div>
         </motion.div>
       </div>

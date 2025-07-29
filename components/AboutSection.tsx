@@ -29,7 +29,19 @@ const AboutSection = () => {
           <h2 className="text-4xl md:text-6xl font-mono font-black text-white mb-6 uppercase tracking-wider">
             <span className="text-red-500 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]">[</span>
             ABOUT 
-            <span className="text-orange-400 drop-shadow-[0_0_15px_rgba(255,165,0,0.8)] animate-pulse"> SUDHANSHU</span>
+            <motion.span 
+              className="text-orange-400 drop-shadow-[0_0_15px_rgba(255,165,0,0.8)]"
+              animate={{ 
+                textShadow: [
+                  "0 0 15px rgba(255,165,0,0.8)",
+                  "0 0 25px rgba(255,200,0,0.9)",
+                  "0 0 15px rgba(255,165,0,0.8)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {" SUDHANSHU"}
+            </motion.span>
             <span className="text-red-500 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]">]</span>
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-red-500 to-orange-400 mx-auto shadow-[0_0_10px_rgba(255,0,0,0.5)]"></div>
@@ -46,7 +58,19 @@ const AboutSection = () => {
           >
             <div className="bg-black/80 border-2 border-red-600 p-8 shadow-[0_0_20px_rgba(255,0,0,0.3)] backdrop-blur-sm">
               <div className="flex items-center mb-6">
-                <Flame className="w-8 h-8 text-red-500 mr-4 animate-pulse" />
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 3, -3, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                >
+                  <Flame className="w-8 h-8 text-red-500 mr-4" />
+                </motion.div>
                 <h3 className="text-2xl font-mono font-bold text-white uppercase tracking-wider">
                   <span className="text-orange-400">[</span>CYBERSECURITY STUDENT<span className="text-orange-400">]</span>
                 </h3>
@@ -67,7 +91,19 @@ const AboutSection = () => {
                 </p>
                 
                 <p>
-                  My biggest achievements include reaching <span className="text-red-400 font-bold animate-pulse">Top 6 Percentile in HTB Tales of Aldoria</span> 
+                  My biggest achievements include reaching <motion.span 
+                    className="text-red-400 font-bold"
+                    animate={{ 
+                      textShadow: [
+                        "0 0 5px rgba(255,100,100,0.8)",
+                        "0 0 15px rgba(255,150,150,0.9)",
+                        "0 0 5px rgba(255,100,100,0.8)"
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    Top 6 Percentile in HTB Tales of Aldoria
+                  </motion.span> 
                   and securing <span className="text-orange-400 font-bold">26th rank in ApoorvCTF 2025</span>. 
                   I'm particularly interested in malware analysis and cryptography.
                 </p>
@@ -76,7 +112,11 @@ const AboutSection = () => {
 
             {/* CTF Team Badge */}
             <motion.div
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 0 30px rgba(255,165,0,0.4)"
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="bg-black/80 border-2 border-orange-500 p-6 text-center shadow-[0_0_20px_rgba(255,165,0,0.3)]"
             >
               <h4 className="text-xl font-mono font-bold text-orange-400 mb-3 uppercase tracking-wider">
@@ -112,11 +152,35 @@ const AboutSection = () => {
               className="bg-black/80 border-2 border-red-500 p-8 shadow-[0_0_20px_rgba(255,0,0,0.3)]"
             >
               <h4 className="text-2xl font-mono font-bold text-orange-400 mb-6 uppercase tracking-wider text-center flex items-center justify-center">
-                <Flame className="w-8 h-8 text-red-500 mr-4 animate-pulse" />
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 5, -5, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                >
+                  <Flame className="w-8 h-8 text-red-500 mr-4" />
+                </motion.div>
                 [CORE_PHILOSOPHY]
               </h4>
               <blockquote className="text-center text-xl font-mono font-semibold text-white italic mb-6">
-                "Learning through <span className="text-red-400 animate-pulse">practice</span> — 
+                "Learning through <motion.span 
+                  className="text-red-400"
+                  animate={{ 
+                    textShadow: [
+                      "0 0 5px rgba(255,100,100,0.8)",
+                      "0 0 15px rgba(255,150,150,0.9)",
+                      "0 0 5px rgba(255,100,100,0.8)"
+                    ]
+                  }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  practice
+                </motion.span> — 
                 breaking systems to understand how to defend them better."
               </blockquote>
               <div className="text-center">
@@ -133,7 +197,19 @@ const AboutSection = () => {
               className="bg-black/80 border-2 border-orange-500 p-8 shadow-[0_0_20px_rgba(255,165,0,0.3)]"
             >
               <h4 className="text-2xl font-mono font-bold text-orange-400 mb-6 uppercase tracking-wider text-center flex items-center justify-center">
-                <Shield className="w-8 h-8 text-orange-400 mr-4 animate-pulse" />
+                <motion.div
+                  animate={{ 
+                    rotate: [0, -5, 5, 0],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                >
+                  <Shield className="w-8 h-8 text-orange-400 mr-4" />
+                </motion.div>
                 [FOCUS_AREAS]
               </h4>
               <div className="grid grid-cols-2 gap-4 text-center">
